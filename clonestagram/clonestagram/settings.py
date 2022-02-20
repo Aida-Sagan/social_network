@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -73,10 +74,22 @@ WSGI_APPLICATION = 'clonestagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DB_CONFIG = {}
+try:
+    with open('../db_config.json', 'r') as config:
+        DB_CONFIG = json.load(config)
+except FileNotFoundError:
+    pass
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DB_CONFIG.get('db_name', 'clonestagram_db'),
+        'USER': DB_CONFIG.get('db_user', 'postgres'),
+        'PASSWORD': DB_CONFIG.get('db_password', 'postgres'),
+        'HOST': DB_CONFIG.get('db_host', '127.0.0.1'),
+        'PORT': DB_CONFIG.get('db_port', '5432'),
     }
 }
 
@@ -103,9 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
