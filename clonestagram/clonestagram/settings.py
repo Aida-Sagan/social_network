@@ -84,7 +84,7 @@ ALLOWED_HOSTS = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('hosts
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('db_name', []),
+        'NAME': DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('db_name', 'clonestagram_db'),
         'USER': DB_CONFIG.get('db_user', 'postgres'),
         'PASSWORD': DB_CONFIG.get('db_password', 'postgres'),
         'HOST': '127.0.0.1',
@@ -129,11 +129,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('static_dir', [])
+STATIC_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('static_dir', 'clonestagram_static')
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('media_dir', [])
+MEDIA_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('media_dir', 'clonestagram_media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
