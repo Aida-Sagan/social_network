@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 import json
 from pathlib import Path
 
@@ -25,9 +26,6 @@ SECRET_KEY = 'django-insecure-o-nz375iej*wo(#es+06m-=$+-00n(&rq0m124v&@eq6tb&*x*
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -76,20 +74,21 @@ WSGI_APPLICATION = 'clonestagram.wsgi.application'
 
 DB_CONFIG = {}
 try:
-    with open('../db_config.json', 'r') as config:
+    with open(os.path.expanduser('~/.config/django_prac.json'), 'r') as config:
         DB_CONFIG = json.load(config)
 except FileNotFoundError:
     pass
 
+ALLOWED_HOSTS = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('hosts', [])
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_CONFIG.get('db_name', 'clonestagram_db'),
+        'NAME': DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('db_name', []),
         'USER': DB_CONFIG.get('db_user', 'postgres'),
         'PASSWORD': DB_CONFIG.get('db_password', 'postgres'),
-        'HOST': DB_CONFIG.get('db_host', '127.0.0.1'),
-        'PORT': DB_CONFIG.get('db_port', '5432'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -129,6 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('static_dir', [])
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = DB_CONFIG.get('projects', {}).get('clonestagram', {}).get('media_dir', [])
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
