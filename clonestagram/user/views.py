@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Post
+from django.contrib.auth import login
+from .models import Post    # noqa
 from .forms import UserRegistrationForm
 
 # Create your views here.
+
 
 def register(request):
     if request.method == "POST":
@@ -18,6 +20,6 @@ def register(request):
     else:
         form = UserRegistrationForm()
     context = {
-        "form" : form,
+        "form": form,
     }
     return render(request, "user/registration.html", context=context)
