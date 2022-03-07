@@ -23,7 +23,7 @@ def register(request):
     }
     return render(request, "user/registration.html", context=context)
 
-def user_logout(request):
+def userLogout(request):
     logout(request)
     return redirect('clone_logout')
 
