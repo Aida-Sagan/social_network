@@ -55,7 +55,7 @@ ROOT_URLCONF = 'clonestagram.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ '/home/django_2022/clonestagram/templates' ],
+        'DIRS': [Path(__file__).resolve().parent.parent / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
