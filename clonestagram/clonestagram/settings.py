@@ -55,7 +55,7 @@ ROOT_URLCONF = 'clonestagram.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ '/home/django_2022/clonestagram/templates' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,9 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-TEMPLATE_DIRS = (
-    '/home/django_2022/clonestagram/templates'
-)
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
