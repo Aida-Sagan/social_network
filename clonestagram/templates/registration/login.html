@@ -1,10 +1,15 @@
 {% extends 'base.html' %} 
+{% load static %}
 {% block content %}
 
 <body style="background-color: #fafafa;">
 
-<div class="container d-flex justify-content-end">
-    <div class="border mt-5 p-3" style="width: 400px; height: 500px; background-color: #ffffff">
+<div class="container">
+    <div class="border mt-5 p-3 mx-auto" style="width: 400px; 
+                                        height: 550px; 
+                                        background-color: #ffffff; 
+                                        background-image: url({% static 'background.jpg' %});">
+        
         <form method="POST" class="d-flex flex-column">
             {% csrf_token %}
             <span class="mx-auto mt-4" style="font-family: cursive; font-size: 55px">Clonestagram</span>
