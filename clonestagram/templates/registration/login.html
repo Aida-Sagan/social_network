@@ -4,9 +4,10 @@
 
 <body style="background-color: #fafafa;">
 
-<div class="container">
-    <div class="border mt-5 p-5 mx-auto" style="width: 450px; 
-                                        height: 600px; 
+<div class="container" >
+    <div class="border mt-5 p-5 mx-auto" style="width: 450px;
+                                        border-radius:10px; 
+                                        height: 700px; 
                                         background-color: #ffffff; 
                                         background-image: url({% static 'background.jpg' %});">
         
@@ -16,17 +17,20 @@
                 <button 
                     class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
                     type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px;"
+                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px; text-decoration: underline;
+                    text-decoration-color: #3470c9;"
                 >
-                    <u>SIGN IN</u>
+                    SIGN IN
                 </button>
-                <button 
-                    class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
-                    type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px;"
-                >
-                    SIGN UP
-                </button>
+                <form action="/register">
+                    <button 
+                        class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
+                        type="submit"
+                        style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px;"
+                    >
+                        SIGN UP
+                    </button>
+                </form>
             </div>
 
         <form method="POST" class="d-flex flex-column">
@@ -63,7 +67,7 @@
             </button> 
         </form>  
         <button 
-            class="btn btn-lg mx-auto d-block btn-link btn-block mt-4" 
+            class="btn btn-lg mx-auto d-block btn-link btn-block mt-5" 
             type="submit"  
             style="font-size: 15px; color: #666666;"
         >
