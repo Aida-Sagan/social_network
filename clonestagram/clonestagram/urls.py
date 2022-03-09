@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views
+from django_registration.backends.one_step.views import RegistrationView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path(
+        'register/',
+        RegistrationView.as_view(),
+        name='register'
+    ),
 ]
