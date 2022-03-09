@@ -15,7 +15,7 @@
                 name="username"
                 value='{{ form.username.value|default_if_none:"" }}'
                 class="form-control"
-                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:10px; "
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); "
                 placeholder="Type your login here"
                 required
             />
@@ -26,12 +26,16 @@
                 id="Password"
                 name="password"
                 class="form-control"
-                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:10px; "
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); "
                 placeholder="Type your password here"
                 required
             />
           
-            <button class="btn btn-lg btn-primary btn-block mt-5 w-50 mx-auto" type="submit">
+            <button 
+                class="btn btn-lg btn-primary btn-block mt-5 w-50 mx-auto" 
+                type="submit"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; "
+            >
                 Sign in
             </button>
         </form>
