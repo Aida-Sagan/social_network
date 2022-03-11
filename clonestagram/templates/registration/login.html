@@ -4,32 +4,37 @@
 
 <body style="background-color: #fafafa;">
 
-<div class="container">
-    <div class="border mt-5 p-3 mx-auto" style="width: 450px; 
-                                        height: 550px; 
+<div class="container" >
+    <div class="border mt-5 p-5 mx-auto" style="width: 450px;
+                                        border-radius:10px; 
+                                        height: 700px; 
                                         background-color: #ffffff; 
                                         background-image: url({% static 'background.jpg' %});">
         
-        <form method="POST" class="d-flex flex-column">
-            {% csrf_token %}
-            <span class="mx-auto mt-4" style="font-family: cursive; font-size: 55px">Clonestagram</span>
+        <span class="mt-4 d-block mx-auto" style="font-family: cursive; font-size: 80px; color: #ffffff;">Clonestagram</span>
             
             <div class="btn-group" role="group">
                 <button 
-                    class="btn btn-xs btn-primary btn-block mt-5 w-40 mx-auto" 
+                    class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
                     type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em;"
+                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px; text-decoration: underline;
+                    text-decoration-color: #3470c9;"
                 >
                     SIGN IN
                 </button>
-                <button 
-                    class="btn btn-xs btn-primary btn-block mt-5 w-40 mx-auto" 
-                    type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em;"
-                >
-                    SIGN UP
-                </button>
+                <form action="/register">
+                    <button 
+                        class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
+                        type="submit"
+                        style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px;"
+                    >
+                        SIGN UP
+                    </button>
+                </form>
             </div>
+
+        <form method="POST" class="d-flex flex-column">
+            {% csrf_token %}
 
             <label for="Username" class="mt-3" style="color: #c0c0c0; ">Username</label>
             <input
@@ -53,8 +58,22 @@
                 placeholder="Type your password here"
                 required
             />
-        </form>
-    </div>    
+            <button 
+                class="btn btn-lg btn-primary mt-5" 
+                type="submit" 
+                style="width: 350px; border-radius:30px; height: 40px;"
+            >
+                Sign in
+            </button> 
+        </form>  
+        <button 
+            class="btn btn-lg mx-auto d-block btn-link btn-block mt-5" 
+            type="submit"  
+            style="font-size: 15px; color: #666666;"
+        >
+            Forgot password?
+        </button>  
+    </div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,11 @@
+{
+    "db_user": "postgres",
+    "db_password": "postgres",
+    "projects": {
+        "your_project_name": {
+            "db_name": "clonestagram_aida",
+            "hosts": ["localhost", “127.0.0.1”]
+        }
+    }
+}
+
