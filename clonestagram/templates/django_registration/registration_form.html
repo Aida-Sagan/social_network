@@ -6,34 +6,36 @@
 
 <div class="container">
     <div class="border mt-5 p-5 mx-auto" style="width: 450px; 
-                                        border-radius:20px;
-                                        height: 800px; 
+                                        border-radius:10px;
+                                        height: 700px; 
                                         background-color: #ffffff; 
-                                        background-image: url({% static 'background.jpg' %});">
+                                        background-size: cover;
+                                        background-position: center;
+                                        background-image: url({% static 'bg.jpg' %});">
         
         <span class="mt-4 d-block mx-auto" style="font-family: cursive; font-size: 80px; color: #ffffff;">Clonestagram</span>
-            
-            <div class="btn-group" role="group">
+
+        <div class="btn-group" role="group">
             <form action="/login">
                 <button 
                     class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
                     type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #c0c0c0; line-height: 1.5em; font-size: 30px;"
+                    style="border:0; background-color: transparent; border-radius:30px; color: #c0c0c0; font-size: 30px;"
                 >
                     SIGN IN
                 </button>
             </form>
-                <button 
-                    class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
-                    type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px; text-decoration: underline;
-                    text-decoration-color: #3470c9;"
-                >
-                    SIGN UP
-                </button>
             
-            </div>
-
+            <button 
+                class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
+                type="submit"
+                style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; font-size: 30px; text-decoration: underline;
+                text-decoration-color: #3470c9; line-height: 1.5em; "
+            >
+                SIGN UP
+            </button>
+        </div>
+            
         <form method="POST" class="d-flex flex-column">
             {% csrf_token %}
 
@@ -48,6 +50,7 @@
                 placeholder="Type your login here"
                 required
             />
+            
             <label for="inputEmail" class="mt-3" style="color: #c0c0c0; ">Email</label>      
             <input
                 type="email"
@@ -58,7 +61,8 @@
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Type your email here"
                 required
-            />         
+            />  
+                   
             <label for="inputPassword1" class="mt-3" style="color: #c0c0c0; ">Password1</label >
             <input
                 type="password"
@@ -69,6 +73,7 @@
                 placeholder="Type your password here"
                 required
             />
+            
             <label for="inputPassword2" class="mt-3" style="color: #c0c0c0; ">Password2</label >
             <input
                 type="password"
@@ -79,6 +84,7 @@
                 placeholder="Type your password here again"
                 required
             />
+            
             <button 
                 class="btn btn-lg btn-primary mt-5" 
                 type="submit" 
@@ -86,8 +92,7 @@
             >
                 Create account
             </button> 
-        </form>  
-       
+        </form>
     </div>
 </div>
 
