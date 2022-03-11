@@ -28,5 +28,13 @@ urlpatterns = [
         RegistrationView.as_view(),
         name='register'
     ),
-
+    path(
+        'change_password/',
+        views.PasswordChangeView.as_view(
+            template_name='commons/change_password.html',
+            success_url = '/'
+        ),
+        name='change_password'
+    ),
+    
 ]
