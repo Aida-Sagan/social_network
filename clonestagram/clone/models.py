@@ -6,7 +6,7 @@ from django.db import models
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото')
+    #photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото')
     caption = models.CharField(max_length=200, verbose_name='Подпись')
     text = models.TextField(blank=True, verbose_name='Текст поста')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')

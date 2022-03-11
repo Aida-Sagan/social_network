@@ -28,4 +28,5 @@ urlpatterns = [
         RegistrationView.as_view(),
         name='register'
     ),
+
 ]

@@ -1,6 +1,6 @@
 {
     "db_user": "postgres",
-    "db_password": "",
+    "db_password": "qwerty",
     "projects": {
         "your_project_name": {
             "db_name": "clonestagram_aida",
