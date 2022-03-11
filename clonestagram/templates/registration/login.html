@@ -15,25 +15,26 @@
         
         <span class="mt-4 d-block mx-auto" style="font-family: cursive; font-size: 80px; color: #ffffff;">Clonestagram</span>
             
-            <div class="btn-group" role="group">
+        <div class="btn-group" role="group">
+            <button 
+                class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
+                type="submit"
+                style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; font-size: 30px; text-decoration: underline; 
+                text-decoration-color: #3470c9; line-height: 1.5em; "
+            >
+                SIGN IN
+            </button>
+            
+            <form action="/register">
                 <button 
                     class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
                     type="submit"
-                    style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px; text-decoration: underline;
-                    text-decoration-color: #3470c9;"
+                    style="border:0; background-color: transparent; border-radius:30px; color: #c0c0c0; font-size: 30px;"
                 >
-                    SIGN IN
+                    SIGN UP
                 </button>
-                <form action="/register">
-                    <button 
-                        class="btn btn-xs btn-primary btn-block mt-3 w-40 mx-auto" 
-                        type="submit"
-                        style="border:0; background-color: transparent; border-radius:30px; color: #c0c0c0; line-height: 1.5em; font-size: 30px;"
-                    >
-                        SIGN UP
-                    </button>
-                </form>
-            </div>
+            </form>
+        </div>
 
         <form method="POST" class="d-flex flex-column">
             {% csrf_token %}
@@ -60,14 +61,17 @@
                 placeholder="Type your password here"
                 required
             />
+            
             <button 
                 class="btn btn-lg btn-primary mt-5" 
                 type="submit" 
                 style="width: 350px; border-radius:30px; height: 35px;"
             >
                 Sign in
-            </button> 
-        </form>  
+            </button>
+            
+        </form>
+        
         <button 
             class="btn btn-lg mx-auto d-block btn-link btn-block mt-5" 
             type="submit"  
