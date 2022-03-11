@@ -23,22 +23,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-<<<<<<< HEAD
+    path('register/',RegistrationView.as_view()),
     path(
-        'register/',
-        RegistrationView.as_view(),
-        name='register'
-    ),
-    path(
-        'change_password/',
+        'change-password/',
         views.PasswordChangeView.as_view(
-            template_name='commons/change_password.html',
+            template_name='commons/change-password.html',
             success_url = '/'
         ),
         name='change_password'
     ),
-    
-=======
-    path('register/',RegistrationView.as_view()),
->>>>>>> a6465f0a72fe4d1f263f4aa7b920f38ccb9ed6a9
 ]
