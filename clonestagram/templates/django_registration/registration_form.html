@@ -29,11 +29,7 @@
                     style="border:0; background-color: transparent; border-radius:30px; color: #ffffff; line-height: 1.5em; font-size: 30px; text-decoration: underline;
                     text-decoration-color: #3470c9;"
                 >
-<<<<<<< HEAD
                     SIGN UP
-=======
-                   SIGN UP
->>>>>>> 6b8155d5b562ff4d5569713a7726785732cf0af1
                 </button>
             
             </div>
@@ -52,10 +48,10 @@
                 placeholder="Type your login here"
                 required
             />
-            <label for="inputEmail" class="mt-3" style="color: #c0c0c0; ">Email</label>
+            <label for="inputEmail" class="mt-3" style="color: #c0c0c0; ">Email</label>      
             <input
-                type="text"
-                id="inputEmail;"
+                type="email"
+                id="inputEmail"
                 name="email"
                 value='{{ form.email.value|default_if_none:"" }}'
                 class="form-control"
