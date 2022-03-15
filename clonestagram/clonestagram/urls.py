@@ -23,12 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('register/',RegistrationView.as_view()),
+    path('register/', RegistrationView.as_view()),
     path(
         'change-password/',
         views.PasswordChangeView.as_view(
             template_name='registration/change_password.html',
-            success_url = '/'
+            success_url='/'
         ),
         name='change_password'
     ),
