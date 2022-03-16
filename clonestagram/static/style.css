@@ -1,0 +1,15 @@
+.formstyle {
+    width: 450px;
+    border-radius:10px; 
+    height: 750px; 
+    background-size: cover;
+    background-position: center;
+}
+
+.entry_field_style {
+    border:0; 
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
+    border-radius:30px; 
+    background: rgba( 0,0,0,.6); 
+    color: #ffffff; 
+}
