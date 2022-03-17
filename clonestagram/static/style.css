@@ -1,7 +1,7 @@
 .formstyle {
-    width: 450px;
+    width: 420px;
     border-radius:10px; 
-    height: 750px; 
+    height: 715px; 
     background-size: cover;
     background-position: center;
 }
@@ -13,3 +13,4 @@
     background: rgba( 0,0,0,.6); 
     color: #ffffff; 
 }
+
