@@ -28,9 +28,9 @@ class Comments(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, verbose_name='Автор')
 
-    def __str__(self):
-        return self.content
-
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+        
+    def __str__(self):
+        return self.content
