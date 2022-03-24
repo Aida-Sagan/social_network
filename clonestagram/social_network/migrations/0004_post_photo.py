@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clone', '0003_remove_post_photo'),
+        ('social_network', '0003_remove_post_photo'),
     ]
 
     operations = [

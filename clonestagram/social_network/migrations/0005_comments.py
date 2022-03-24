@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('clone', '0004_post_photo'),
+        ('social_network', '0004_post_photo'),
     ]
 
     operations = [
@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('content', models.TextField(blank=True, verbose_name='Текст комментария')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата')),
                 ('is_published', models.BooleanField(default=True, verbose_name='Опубликовано')),
-                ('post', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='clone.post', verbose_name='Под постом')),
+                ('post', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='social_network.post', verbose_name='Под постом')),
                 ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, verbose_name='Автор')),
             ],
             options={

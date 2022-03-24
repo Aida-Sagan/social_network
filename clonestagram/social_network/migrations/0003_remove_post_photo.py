@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('clone', '0002_alter_post_id'),
+        ('social_network', '0002_alter_post_id'),
     ]
 
     operations = [
