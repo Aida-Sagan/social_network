@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from .forms import PostForm
-from .models import Post
 
 
 class PostCreate(View):
