@@ -12,6 +12,8 @@ class Post(models.Model):
     text = models.TextField(blank=True, verbose_name='Текст поста')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_date = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    likes = models.IntegerField(blank=True, default='0')
+    comm = models.IntegerField(blank=True, default='0')
 
     class Meta:
         verbose_name = 'Пост'

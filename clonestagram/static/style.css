@@ -1,16 +1,24 @@
 .formstyle {
     width: 420px;
-    border-radius:10px; 
-    height: 715px; 
+    border-radius:10px;
+    height: 715px;
     background-size: cover;
     background-position: center;
 }
-
-.entry_field_style {
-    border:0; 
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06); 
-    border-radius:30px; 
-    background: rgba( 0,0,0,.6); 
-    color: #ffffff; 
+.block{
+    border: 50px solid #e2e2e2;
+    border-radius: 4px;
+    box-shadow: 0 0 5px -4px rgba(128, 128, 128, 0.69);
+    background: white;
+    padding: 10px;
+    margin: 5px;
 }
 
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+.card{
+    margin-bottom: 20px;
+}

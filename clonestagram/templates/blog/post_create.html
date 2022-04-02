@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div style="z-index: -100; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;">
+    <video
+      autoplay muted loop
+      style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; min-height: 50%; min-width: 50%;"
+    >
+      <source src="{% static 'bg.mp4' %}?v=3" type="video/mp4">
+    </video>
+
+
+<div class="container-fluid d-flex h-100 justify-content-center align-items-center p-0">
+    <div class="row border mt-5 p-5 mx-auto center-block" >
+        <div class="col">
+            <div class="card border-dark mb-3" style="width: 30rem; height: 20rem; font-family: cursive; " >
+                <img class="card-img-top" style="background-image: url({% static 'bg.jpg' %}) ">
+                <div class="card-header" style="font-size: 30px; text-align: center;" >CREATE NEW POST</div>
+                <div class="card-body" style="height: 20rem; text-align: center;">
+                    <form method="post" name="new-post-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <textarea class="form-control form-control-sm" type="text" name="text"
+                                  placeholder="share the news with your friends"></textarea>
+                        <label for="image">Add photo</label>
+                        <input class="form-control form-control-sm" type="file" name="image"><br>
+                        <input class="form-control btn btn-outline-success btn-sm" type="submit" value="Добавить">
+                    </form>
+                </div>
+            </div>
+            <div class="timeline">
+                {% for post in posts %}
+                    <div class="card border-dark mb-3">
+                        <div class="card-body">
+                            {% if post.image.name %}
+                                <img src="{{ post.image.url }}" class="img-thumbnail"><br>
+                            {% endif %}
+                            {{ post.text }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
