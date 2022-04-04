@@ -9,14 +9,14 @@ from .models import Post
 class PostCreate(View):
     def get(self, request):
         form = PostForm()
-        return render(request, template_name='post_create.html', context={'form': form})
+        return render(request, template_name='blog/post_create.html', context={'form': form})
 
     def post(self, request):
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save()
-            return redirect(post)
-        return render(request, template_name='post_create.html', context={'form': form})
+        bound_form = PostForm(request.POST)
+        if bound_form.is_valid():
+            new_post = bound_form.save()
+            return redirect(new_post)
+        return render(request, template_name='blog/post_create.html', context={'form': bound_form})
 
 @login_required
 def main(request):
