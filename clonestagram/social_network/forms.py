@@ -1,14 +1,19 @@
 from django import forms
-from .models import Post
+from .models import Post, Profile
 from django.core.exceptions import ValidationError
 
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
+        fields = ('caption', 'text')
         widgets = {
-            "title": forms.TextInput(attrs={"class": "form-control"}),
-            "body": forms.Textarea(attrs={"class": "form-control"}),
-            "tags": forms.SelectMultiple(attrs={"class": "form-control"}),
+            'caption': forms.TextInput(attrs={"class": "form-control"}),
+            'text': forms.Textarea(attrs={"class": "form-control"}),
         }
-        fields = ['caption']
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name')
