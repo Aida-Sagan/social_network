@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -9,12 +9,17 @@ from .models import Post, Profile
 
 class PostCreate(View):
     def get(self, request):
-        form = PostForm()
-        return render(request, template_name='blog/post_create.html', context={'form': form})
+        if request.user.is_authenticated:
+            form = PostForm()
+            return render(request, template_name='blog/post_create.html', context={'form': form})
+        else:
+            return HttpResponseRedirect('/login')
 
     def post(self, request):
         bound_form = PostForm(request.POST, request.FILES)
         if bound_form.is_valid():
+            bound_form = bound_form.save(commit=False)
+            bound_form.user = request.user
             bound_form.save()
             return redirect('/main')
         return render(request, template_name='blog/post_create.html', context={'form': bound_form})
@@ -36,3 +41,8 @@ def start(request):
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     return render(request, template_name='profile.html', context={'form': profile})
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
