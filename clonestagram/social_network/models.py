@@ -1,10 +1,9 @@
-from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Автор')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото')
     caption = models.TextField(verbose_name='Подпись')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
@@ -17,15 +16,15 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
 
     def __str__(self):
-        return f'{self.author} - {self.created_date}'
+        return self.caption
 
 
 class Comments(models.Model):
     content = models.TextField(blank=True, verbose_name='Текст комментария')
-    post = models.ForeignKey('Post', on_delete=models.PROTECT, null=True, verbose_name='Под постом')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, verbose_name='Автор')
+    post = models.ForeignKey(Post, on_delete=models.PROTECT, null=True, verbose_name='Под постом')
 
     def __str__(self):
         return self.content
@@ -39,12 +38,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
-    #avatar = models.ImageField(default='default.png', upload_to='avatars/')  
-    
+#    avatar = models.ImageField(default='default.png', upload_to='avatars/')
+
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
     def __str__(self):
         return f"{self.user.username}"
-
