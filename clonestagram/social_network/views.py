@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-from .forms import PostForm, CommentForm
+from .forms import PostForm
 from .models import Comments, Post, Profile
 
 
@@ -47,14 +47,4 @@ def profile(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = Comments.objects.filter(post=post).order_by('created_at')
-    new_comment = None
-    if request.method == 'POST':
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.post = post
-            new_comment.user = request.user
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments})
