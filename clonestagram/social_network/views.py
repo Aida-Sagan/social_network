@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
 from .forms import PostForm
-from .models import Post, Profile
+from .models import Comments, Post, Profile
 
 
 class PostCreate(View):
@@ -43,6 +43,8 @@ def profile(request):
     return render(request, template_name='profile.html', context={'form': profile})
 
 
+@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'post_detail.html', {'post': post})
+    comments = Comments.objects.filter(post=post).order_by('created_at')
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments})
