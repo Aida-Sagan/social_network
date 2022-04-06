@@ -53,13 +53,28 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <form>
-                    <div class="form-group">
-                      <label for="comment">Оставить комментарий</label>
-                      <input type="text" class="form-control" id="comment" placeholder="" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm">Опубликовать</button>
-                </form>
+                
+                {% if new_comment %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="comment">Оставить комментарий:</label>
+                            {{ comment_form.content }}
+                        <button type="submit" class="btn btn-primary  btn-sm">Опубликовать</button>
+                        <script>
+                            document.getElementById('comment').reset();
+                        </script>
+                    </form>
+                {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="comment">Оставить комментарий:</label>
+                            {{ comment_form.content }}
+                        <button type="submit" class="btn btn-primary  btn-sm">Опубликовать</button>
+                        <script>
+                            document.getElementById('comment').reset();
+                        </script>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
