@@ -37,7 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_network.apps.SocialNetworkConfig',
+    'social.apps.django_app.default',
+    'social_django',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.vk.VKOAuth2',         # бекенд авторизации через ВКонтакте
+    'django.contrib.auth.backends.ModelBackend',  # бекенд классической аутентификации, чтобы работала авторизация через обычный логин и пароль
+]
+
+SOCIAL_AUTH_VK_KEY = '8128761'
+SOCIAL_AUTH_VK_SECRET = 'HtVbUsYcBjlVp0yaOGXS'
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
