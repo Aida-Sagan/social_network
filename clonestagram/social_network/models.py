@@ -27,12 +27,12 @@ class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, verbose_name='Автор')
     post = models.ForeignKey(Post, on_delete=models.PROTECT, null=True, verbose_name='Под постом')
 
-    def __str__(self):
-        return self.content
-
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return self.content
 
 
 class Profile(models.Model):
@@ -41,17 +41,17 @@ class Profile(models.Model):
     birth_date = models.DateField(null=True)
     country = models.CharField(max_length=20, null=True)
 
-    def __str__(self):
-        return f'{self.user.username}'
-
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
+    def __str__(self):
+        return f'{self.user.username}'
 
-def create_user_profile(sender, instance, created, **kwargs):
+
+def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
-post_save.connect(create_user_profile, sender=User)
+post_save.connect(create_profile, sender=User)

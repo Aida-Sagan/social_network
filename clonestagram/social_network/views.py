@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, ProfileForm
 from .models import Comments, Post, Profile
 
 
@@ -11,7 +11,7 @@ class PostCreate(View):
     def get(self, request):
         if request.user.is_authenticated:
             form = PostForm()
-            return render(request, template_name='blog/post_create.html', context={'form': form})
+            return render(request, 'blog/post_create.html', {'form': form})
         else:
             return HttpResponseRedirect('/login')
 
@@ -22,13 +22,7 @@ class PostCreate(View):
             bound_form.user = request.user
             bound_form.save()
             return redirect('/main')
-        return render(request, template_name='blog/post_create.html', context={'form': bound_form})
-
-
-@login_required
-def main(request):
-    posts = Post.objects.all().order_by('-created_date')
-    return render(request, 'tape.html', {'posts': posts})
+        return render(request, 'blog/post_create.html', {'form': bound_form})
 
 
 def start(request):
@@ -38,9 +32,28 @@ def start(request):
         return HttpResponseRedirect('/login')
 
 
+@login_required
+def main(request):
+    posts = Post.objects.all().order_by('-created_date')
+    return render(request, 'tape.html', {'posts': posts})
+
+
+@login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, template_name='profile.html', context={'form': profile})
+    return render(request, 'profile/profile.html', {'form': profile})
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('/profile')
+    else:
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile/edit_profile.html', {'form': profile_form})
 
 
 @login_required
