@@ -29,6 +29,7 @@ DEBUG = True
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,10 +42,12 @@ INSTALLED_APPS = [
     'social_django',
 ]
 
+
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.vk.VKOAuth2',         # бекенд авторизации через ВКонтакте
     'django.contrib.auth.backends.ModelBackend',  # бекенд классической аутентификации, чтобы работала авторизация через обычный логин и пароль
 ]
+
 
 SOCIAL_AUTH_VK_KEY = '8128761'
 SOCIAL_AUTH_VK_SECRET = 'HtVbUsYcBjlVp0yaOGXS'
