@@ -23,7 +23,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(), name='login'),
-    path('social-auth/', include('social_django.urls', namespace="social")),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('register/', RegistrationView.as_view(success_url='/profile/')),
     path(
@@ -34,5 +33,6 @@ urlpatterns = [
         ),
         name='change_password'
     ),
+    path('', include('social_django.urls')),
     path('', include('social_network.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
