@@ -9,8 +9,8 @@ class Post(models.Model):
     caption = models.TextField(verbose_name='Подпись')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_date = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    likes = models.IntegerField(blank=True, default='0')
-    comm = models.IntegerField(blank=True, default='0')
+    likes = models.IntegerField(blank=True, default=0)
+    comm = models.IntegerField(blank=True, default=0)
 
     class Meta:
         verbose_name = 'Пост'

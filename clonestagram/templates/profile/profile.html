@@ -2,6 +2,15 @@
 
 {% block content %}
 
+<style>
+    .scale {
+        transition: 1s;
+    }
+    .scale:hover {
+        transform: scale(1.2);
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark sticky-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/main">
@@ -19,19 +28,80 @@
                     <a class="nav-link" href="/post_create">Добавить пост</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/settings">Настройки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/profile">{{ user.username }}</a>
+                    <a class="nav-link disabled" href="/settings">Настройки</a>
                 </li>
             </ul>
-            <a class="navbar-text" href="/logout">Выйти</a>
+            
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="/profile">
+                        <img src= "{{ form.avatar.url }}" class="img-fluid" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" >
+                    </a>
+                    <a class="nav-link d-inline active" href="/profile">{{ user.username }}</a>
+                    <a class="nav-link d-inline" href="/logout">Выйти</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
-    {{ form.user.username }}
-    {{ form.country }}
-    <img src= "{{ form.photo.url }}" class="img-fluid">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 me-auto" style="margin-top: 30px;">
+            <div class="card border border-dark">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src= "{{ form.avatar.url }}" class="img-fluid" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" >
+                        {{ form.user }}
+                    </h5>
+                    <p class="card-text"> {{ form.bio }} </p>
+                </div>
+                <div class="card-group">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> 
+                                Имя:
+                            </li>
+                            <li class="list-group-item">
+                                Фамилия:
+                            </li>
+                            <li class="list-group-item">
+                                Регион:
+                            </li>
+                            <li class="list-group-item">
+                                День рождения:
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> 
+                                {{ form.first_name }}
+                            </li>
+                            <li class="list-group-item">
+                                {{ form.last_name }}
+                            </li>
+                            <li class="list-group-item">
+                                {{ form.country }}
+                            </li>
+                            <li class="list-group-item">
+                                {{ form.birth_date }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 ms-auto" style="margin-top: 30px;">
+            <div style="flex-direction: row; width: 100%;">
+                {% for post in posts %}
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    <img src= "{{ post.photo.url }}" class="img-fluid scale" style="width: 300px; height: 300px; margin-bottom: 10px; margin-left: 0px; object-fit: cover;">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
         
 {% endblock %}

@@ -35,13 +35,15 @@ def start(request):
 @login_required
 def main(request):
     posts = Post.objects.all().order_by('-created_date')
-    return render(request, 'tape.html', {'posts': posts})
+    profile = Profile.objects.get(user=request.user)
+    return render(request, 'tape.html', {'posts': posts, 'avatar': profile.avatar})
 
 
 @login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'profile/profile.html', {'form': profile})
+    posts = Post.objects.filter(user=request.user)
+    return render(request, 'profile/profile.html', {'form': profile, 'posts': posts})
 
 
 @login_required
@@ -59,7 +61,9 @@ def edit_profile(request):
 @login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    profile = Profile.objects.get(user=request.user)
     comments = Comments.objects.filter(post=post).order_by('created_at')
+    postAuthor = Profile.objects.get(user=post.user)
     new_comment = None
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -68,7 +72,9 @@ def post_detail(request, pk):
             new_comment.post = post
             new_comment.user = request.user
             new_comment.save()
+            post.comm += 1
+            post.save()
             return redirect(request.path)
     else:
         comment_form = CommentForm()
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'avatar': profile.avatar, 'postAuthor': postAuthor})
