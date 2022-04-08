@@ -37,9 +37,12 @@ class Comments(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    avatar = models.ImageField(default='default.png', upload_to='avatars/', null=True)
-    birth_date = models.DateField(null=True)
-    country = models.CharField(max_length=20, null=True)
+    first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
+    country = models.CharField(max_length=20, blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, verbose_name='Текст')
+    birth_date = models.DateField(blank=True, null=True)
+    avatar = models.ImageField(default='default.png', upload_to='avatars/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Профиль'

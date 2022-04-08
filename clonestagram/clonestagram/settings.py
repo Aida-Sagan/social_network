@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_network.apps.SocialNetworkConfig',
-
-    'oauth2_provider',
+    # 'oauth2_provider',
     'social_django',
 ]
 

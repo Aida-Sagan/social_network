@@ -23,4 +23,4 @@ class CommentForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('avatar', 'birth_date', 'country')
+        fields = ('first_name', 'last_name', 'country', 'bio', 'birth_date', 'avatar')

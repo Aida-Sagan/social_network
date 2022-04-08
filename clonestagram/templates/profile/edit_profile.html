@@ -14,7 +14,29 @@
         <form method="POST" class="d-flex flex-column" enctype="multipart/form-data">
             {% csrf_token %}
             
-            <label for="Birth Date" class="mt-3" style="color: #c0c0c0;">Birth Date</label>
+            <label for="First Name" class="mt-2" style="color: #c0c0c0;">First Name</label>
+            <input
+                type="text"
+                id="First Name"
+                name="first_name"
+                class="form-control"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                placeholder="First Name"
+                required
+            />
+            
+            <label for="Last Name" class="mt-2" style="color: #c0c0c0;">Last Name</label>
+            <input
+                type="text"
+                id="Last Name"
+                name="last_name"
+                class="form-control"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                placeholder="Last Name"
+                required
+            />
+            
+            <label for="Birth Date" class="mt-2" style="color: #c0c0c0;">Birth Date</label>
             <input
                 type="date"
                 id="Birth Date"
@@ -22,10 +44,9 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Country"
-                required
             />
 
-            <label for="Country" class="mt-3" style="color: #c0c0c0;">Country</label>
+            <label for="Country" class="mt-2" style="color: #c0c0c0;">Country</label>
             <input
                 type="text"
                 id="Country"
@@ -33,23 +54,31 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Country"
-                required
+            />
+            
+            <label for="Bio" class="mt-2" style="color: #c0c0c0;">Bio</label>
+            <input
+                type="text"
+                id="Bio"
+                name="bio"
+                class="form-control"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                placeholder="Bio"
             />
           
-            <label for="avatar" class="mt-3" style="color: #c0c0c0;">Avatar</label>
+            <label for="avatar" class="mt-2" style="color: #c0c0c0;">Avatar</label>
             <input
                 type="file"
                 id="avatar"
                 name="avatar"
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
-                required
             />
 
             <button
                 type="submit"
-                class="btn btn-sm btn-primary btn-block mt-5"
-                style="border-radius: 30px; height: 35px; font-size: 20px; bottom: -50px; position: relative; background: #739e8c; border: none;"
+                class="btn btn-sm btn-primary btn-block mt-4"
+                style="border-radius:30px; height: 35px; bottom: -15px; position: relative; font-size: 20px; background: #739e8c; border: none;"
             >
                 Save Changes
             </button>
