@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_network.apps.SocialNetworkConfig',
-    #'social.apps.django_app.default',
-    #'social_auth',
+
+    'oauth2_provider',
     'social_django',
 ]
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '8130509'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = '48QOnaDIQ0agZn4GbSoi'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -50,11 +53,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '8130251'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'HtVbUsYcBjlVp0yaOGXS'
-
-
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_JSONFIELD_CUSTOM = 'django.db.models.JSONField'
+
+AUTH_PROFILE_MODULE = 'project.pm.UserProfile'
 
 
 MIDDLEWARE = [
@@ -135,6 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile/'
+LOGOUT_URL = '/logout/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 # Internationalization

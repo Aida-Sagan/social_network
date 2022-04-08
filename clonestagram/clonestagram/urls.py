@@ -33,6 +33,6 @@ urlpatterns = [
         ),
         name='change_password'
     ),
-    path('', include('social_django.urls')),
+    path('', include('social_django.urls', namespace='social')),
     path('', include('social_network.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
