@@ -2,8 +2,36 @@
 
 {% block content %}
 
-        {{ form.user.username }}
-        {{ form.country }}
-        <img src= "{{ form.photo.url }}" class="img-fluid">
+<nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/main">
+            <img src="/static/logo.jpg" class="img-thumbnail" alt="" style="width: 180px; height: 80px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/main">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/post_create">Добавить пост</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/settings">Настройки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/profile">{{ user.username }}</a>
+                </li>
+            </ul>
+            <a class="navbar-text" href="/logout">Выйти</a>
+        </div>
+    </div>
+</nav>
+
+    {{ form.user.username }}
+    {{ form.country }}
+    <img src= "{{ form.photo.url }}" class="img-fluid">
         
 {% endblock %}
