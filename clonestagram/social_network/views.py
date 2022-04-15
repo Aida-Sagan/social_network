@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
-from .forms import PostForm, CommentForm, ProfileForm
+from .forms import PostForm, CommentForm, ProfileForm, UserForm
 from .models import Comments, Post, Profile
 
 
@@ -50,12 +50,15 @@ def profile(request):
 def edit_profile(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if profile_form.is_valid():
+        user_form = UserForm(request.POST, instance=request.user)
+        if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
+            user_form.save()
             return redirect('/profile')
     else:
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profile/edit_profile.html', {'form': profile_form})
+        user_form = UserForm(instance=request.user)
+    return render(request, 'profile/edit_profile.html', {'profile_form': profile_form, 'user_form': user_form})
 
 
 @login_required

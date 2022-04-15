@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Автор')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото')
-    caption = models.TextField(verbose_name='Подпись')
+    caption = models.TextField(blank=True, verbose_name='Подпись')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_date = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     likes = models.IntegerField(blank=True, default=0)
@@ -37,8 +37,6 @@ class Comments(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
     country = models.CharField(max_length=20, blank=True, null=True)
     bio = models.TextField(blank=True, null=True, verbose_name='Текст')
     birth_date = models.DateField(blank=True, null=True)

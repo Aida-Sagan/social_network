@@ -1,11 +1,11 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %}
-
+            
 <body style="background-color: #fafafa;">
 
 <div class="container" >
-    <div class="border mt-5 p-5 mx-auto formstyle" style="background-image: url({% static 'bg.jpg' %});">
+    <div class="border mt-5 p-5 mx-auto formstyle" style="background-image: url({% static 'bg.jpg' %}); height: 870px;">
         
         <span class="mt-4 d-block mx-auto" style="font-family: cursive; font-size: 60px; color: #ffffff;">
             <p align="center">Edit Profile</p>
@@ -13,6 +13,17 @@
 
         <form method="POST" class="d-flex flex-column" enctype="multipart/form-data">
             {% csrf_token %}
+            
+            <label for="Username" class="mt-2" style="color: #c0c0c0;">Username</label>
+            <input
+                type="text"
+                id="Username"
+                name="username"
+                class="form-control"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                placeholder="Username"
+                value='{{ user_form.username.value|default_if_none:"" }}'
+            />
             
             <label for="First Name" class="mt-2" style="color: #c0c0c0;">First Name</label>
             <input
@@ -22,7 +33,7 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="First Name"
-                required
+                value='{{ user_form.first_name.value|default_if_none:"" }}'
             />
             
             <label for="Last Name" class="mt-2" style="color: #c0c0c0;">Last Name</label>
@@ -33,9 +44,20 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Last Name"
-                required
+                value='{{ user_form.last_name.value|default_if_none:"" }}'
             />
             
+            <label for="Email" class="mt-2" style="color: #c0c0c0;">Email</label>
+            <input
+                type="email"
+                id="Email"
+                name="email"
+                class="form-control"
+                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                placeholder="Email"
+                value='{{ user_form.email.value|default_if_none:"" }}'
+            />
+
             <label for="Birth Date" class="mt-2" style="color: #c0c0c0;">Birth Date</label>
             <input
                 type="date"
@@ -43,7 +65,7 @@
                 name="birth_date"
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
-                placeholder="Country"
+                value='{{ profile_form.birth_date.value|date:"Y-m-d" }}'
             />
 
             <label for="Country" class="mt-2" style="color: #c0c0c0;">Country</label>
@@ -54,8 +76,9 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Country"
+                value='{{ profile_form.country.value|default_if_none:"" }}'
             />
-            
+
             <label for="Bio" class="mt-2" style="color: #c0c0c0;">Bio</label>
             <input
                 type="text"
@@ -64,6 +87,7 @@
                 class="form-control"
                 style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
                 placeholder="Bio"
+                value='{{ profile_form.bio.value|default_if_none:"" }}'
             />
           
             <label for="avatar" class="mt-2" style="color: #c0c0c0;">Avatar</label>

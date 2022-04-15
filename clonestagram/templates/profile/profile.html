@@ -28,6 +28,9 @@
                     <a class="nav-link" href="/post_create">Добавить пост</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/edit_profile">Редактировать профиль</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link disabled" href="/settings">Настройки</a>
                 </li>
             </ul>
@@ -76,10 +79,10 @@
                     <div class="card">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"> 
-                                {{ form.first_name }}
+                                {{ form.user.first_name }}
                             </li>
                             <li class="list-group-item">
-                                {{ form.last_name }}
+                                {{ form.user.last_name }}
                             </li>
                             <li class="list-group-item">
                                 {{ form.country }}
