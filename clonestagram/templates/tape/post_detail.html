@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<body style="background-color: #fafafa;"></body>
+<body id="idbody"></body>
 
 <nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark sticky-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
@@ -28,7 +28,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a href="/profile">
-                        <img src= "{{ avatar.url }}" class="img-fluid" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" >
+                        <img src= "{{ avatar.url }}" class="img-fluid avatarstyle">
                     </a>
                     <a class="nav-link d-inline" href="/profile">{{ user.username }}</a>
                     <a class="nav-link d-inline" href="/logout">Выйти</a>
@@ -43,7 +43,7 @@
         <div class="col-md-7" style="margin: 20px;" id="post">
             <div class="card border border-dark">
                 <div class="card-body">
-                    <img src= "{{ postAuthor.avatar.url }}" class="img-fluid" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" >
+                    <img src= "{{ postAuthor.avatar.url }}" class="img-fluid avatarstyle">
                     {{ post.user }}
                     <div class="d-inline float-end">{{ post.created_date }}</div>
                 </div>
@@ -54,7 +54,7 @@
             <div class="card border border-dark">
                 <div class="card-body">
                     <h5 class="card-title"> 
-                        <img src= "{{ postAuthor.avatar.url }}" class="img-fluid" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;" >
+                        <img src= "{{ postAuthor.avatar.url }}" class="img-fluid avatarstyle">
                         {{ post.user }}: 
                     </h5>
                     <p class="card-text"> {{ post.caption }} </p>

@@ -2,42 +2,40 @@
 {% load static %}
 {% block content %}
 
-<body style="background-color: #fafafa;">
+<body id="idbody">
 
 <div class="container" >
     <div class="border mt-5 p-5 mx-auto formstyle" style="background-image: url({% static 'bg.jpg' %});">
         
-        <span class="mt-4 d-block mx-auto" style="font-family: cursive; font-size: 47px; color: #ffffff;">
+        <span class="mt-4 d-block mx-auto" id="idspan" style="font-size: 47px;">
             <p align="center">Create New Post</p>
         </span>
 
         <form method="POST" class="d-flex flex-column" enctype="multipart/form-data">
             {% csrf_token %}
             
-            <label for="caption" class="mt-2" style="color: #c0c0c0;">Caption</label>
+            <label for="caption" class="mt-2 labelstyle">Caption</label>
             <input
                 type="text"
                 id="Caption"
                 name="caption"
-                class="form-control"
-                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                class="form-control fieldstyle"
                 placeholder="Share the news with your friends"
             />
 
-            <label for="photo" class="mt-3" style="color: #c0c0c0;">Photo</label>
+            <label for="photo" class="mt-3 labelstyle">Photo</label>
             <input
                 type="file"
                 id="photo"
                 name="photo"
-                class="form-control"
-                style="border:0; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); border-radius:30px; background: rgba( 0,0,0,.6); color: #ffffff; "
+                class="form-control fieldstyle"
                 required
             />
             
             <button
                 type="submit"
+                id="idbutton"
                 class="btn btn-sm btn-primary btn-block mt-5"
-                style="border-radius: 30px; height: 35px; font-size: 20px; bottom: -50px; position: relative; background: #739e8c; border: none;"
             >
                 Create Post
             </button>

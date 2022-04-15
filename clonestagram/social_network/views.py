@@ -11,7 +11,7 @@ class PostCreate(View):
     def get(self, request):
         if request.user.is_authenticated:
             form = PostForm()
-            return render(request, 'blog/post_create.html', {'form': form})
+            return render(request, 'tape/post_create.html', {'form': form})
         else:
             return HttpResponseRedirect('/login')
 
@@ -22,7 +22,7 @@ class PostCreate(View):
             bound_form.user = request.user
             bound_form.save()
             return redirect('/main')
-        return render(request, 'blog/post_create.html', {'form': bound_form})
+        return render(request, 'tape/post_create.html', {'form': bound_form})
 
 
 def start(request):
@@ -36,7 +36,7 @@ def start(request):
 def main(request):
     posts = Post.objects.all().order_by('-created_date')
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'tape.html', {'posts': posts, 'avatar': profile.avatar})
+    return render(request, 'tape/tape.html', {'posts': posts, 'avatar': profile.avatar})
 
 
 @login_required
@@ -80,4 +80,4 @@ def post_detail(request, pk):
             return redirect(request.path)
     else:
         comment_form = CommentForm()
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'avatar': profile.avatar, 'postAuthor': postAuthor})
+    return render(request, 'tape/post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'avatar': profile.avatar, 'postAuthor': postAuthor})
