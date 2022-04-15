@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .forms import PostForm, CommentForm, ProfileForm, UserForm
 from .models import Comments, Post, Profile
@@ -13,7 +13,7 @@ class PostCreate(View):
             form = PostForm()
             return render(request, 'tape/post_create.html', {'form': form})
         else:
-            return HttpResponseRedirect('/login')
+            return redirect(reverse('login'))
 
     def post(self, request):
         bound_form = PostForm(request.POST, request.FILES)
@@ -21,15 +21,15 @@ class PostCreate(View):
             bound_form = bound_form.save(commit=False)
             bound_form.user = request.user
             bound_form.save()
-            return redirect('/main')
+            return redirect(reverse('main'))
         return render(request, 'tape/post_create.html', {'form': bound_form})
 
 
 def start(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/main')
+        return redirect(reverse('main'))
     else:
-        return HttpResponseRedirect('/login')
+        return redirect(reverse('login'))
 
 
 @login_required
@@ -54,7 +54,7 @@ def edit_profile(request):
         if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
             user_form.save()
-            return redirect('/profile')
+            return redirect(reverse('profile'))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
         user_form = UserForm(instance=request.user)
