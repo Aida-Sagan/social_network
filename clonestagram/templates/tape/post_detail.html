@@ -85,14 +85,70 @@
                             {{ comment_form.content }}
                         <button type="submit" class="btn btn-primary  btn-sm">Опубликовать</button>
                         <script>
-                            document.getElementById('comment').reset();
+                            document.getElementById('comment').reset();  
                         </script>
                     </form>
                 {% endif %}
+                
+                <form method="POST" class="like-form" action="{% url 'like_post' post.id %}">
+                    {% csrf_token %}
+                        {%if user in post.likes.all %}
+                            <button type="submit" class="btn btn-danger like-btn" name="post_id" value="{{ post.id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill like-icon" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                                </svg>
+                                <span class="like-count" id="like-count">{{ post.likes.count }}</span> 
+                            </button>
+                        {% else %}
+                            <button type="submit" class="btn btn-outline-danger like-btn" name="post_id" value="{{ post.id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill like-icon" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                                </svg>
+                                <span class="like-count" id="like-count">{{ post.likes.count }}</span> 
+                            </button>
+                        {% endif %}
+                </form>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('.like-form').submit(function(e) {
+            e.preventDefault();
+            const post_id = $('.like-btn').val();
+            const token = $('input[name=csrfmiddlewaretoken]').val();
+            const url = $(this).attr('action');
 
+            $.ajax({
+                method: "POST",
+                url: url,
+                headers: {'X-CSRFToken': token},
+                data: {
+                    'post_id': post_id
+                },
+
+                success: function(response) {
+                    if (response.liked == true) {
+                        $('.like-btn').removeClass('btn-outline-danger')
+                        $('.like-btn').addClass('btn-danger');
+                    } else {
+                        $('.like-btn').removeClass('btn-danger')
+                        $('.like-btn').addClass('btn-outline-danger');
+                    }
+
+                    like = $('#like-count').text(response.likes_count)
+                    parseInt(like)
+                },
+
+                error: function(response) {
+                    console.log("Error", response);
+                }
+            })
+        })
+    })
+</script>
 {% endblock %}

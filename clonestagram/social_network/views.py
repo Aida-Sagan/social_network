@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.http import JsonResponse
 
 from .forms import PostForm, CommentForm, ProfileForm, UserForm
 from .models import Comments, Post, Profile
@@ -56,7 +57,7 @@ def edit_profile(request):
         if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
             user_form.save()
-            return redirect(reverse('profile'))
+            return redirect(reverse('profile', args=[str(request.user.id)]))
     else:
         profile_form = ProfileForm(instance=request.user.profile)
         user_form = UserForm(instance=request.user)
@@ -83,3 +84,30 @@ def post_detail(request, pk):
     else:
         comment_form = CommentForm()
     return render(request, 'tape/post_detail.html', {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'avatar': profile.avatar, 'postAuthor': postAuthor})
+
+
+@login_required
+def liked_post(requset, pk):
+    user = requset.user
+    like = False
+    if requset.method == 'POST':
+        pk = requset.POST['post_id']
+        post = get_object_or_404(Post, pk=pk)
+        if user in post.likes.all():
+            post.likes.remove(user)
+            like = False
+        else:
+            post.likes.add(user)
+            like = True
+
+        data = {
+            'liked': like,
+            'likes_count': post.likes.all().count()
+        }
+        return JsonResponse(data, safe=False)
+    return redirect(reverse('post_detail', args=[str(pk)]))
+
+
+@login_required
+def settings(request):
+    return render(request, 'settings/settings.html')

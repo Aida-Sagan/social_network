@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
  
@@ -7,7 +8,7 @@
 <nav class="navbar navbar-expand-lg navbar-light border-bottom border-dark sticky-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/main">
-            <img src="static/logo.jpg" class="img-thumbnail" alt="" style="width: 180px; height: 80px;">
+            <img src="{% static 'logo.jpg' %}" class="img-thumbnail" alt="" style="width: 180px; height: 80px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,16 +22,16 @@
                     <a class="nav-link" href="/post_create">Добавить пост</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="/settings">Настройки</a>
+                    <a class="nav-link" href="/settings">Настройки</a>
                 </li>
             </ul>
             
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a href="{% url 'profile' user_id=user.id %}">
+                    <a href="{% url 'profile' user.id %}">
                         <img src= "{{ form.avatar.url }}" class="img-fluid avatarstyle">
                     </a>
-                    <a class="nav-link d-inline" href="{% url 'profile' user_id=user.id %}">{{ user.username }}</a>
+                    <a class="nav-link d-inline" href="{% url 'profile' user.id %}">{{ user.username }}</a>
                     <a class="nav-link d-inline" href="/logout">Выйти</a>
                 </li>
             </ul>

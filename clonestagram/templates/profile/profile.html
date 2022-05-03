@@ -34,7 +34,7 @@
                     <a class="nav-link" href="/messenger">Мессенджер</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="/settings">Настройки</a>
+                    <a class="nav-link" href="/settings">Настройки</a>
                 </li>
             </ul>
             
@@ -43,7 +43,7 @@
                     <a href="{% url 'profile' user_id=user.id %}">
                         <img src= "{{ form.avatar.url }}" class="img-fluid avatarstyle">
                     </a>
-                    <a class="nav-link d-inline" href="{% url 'profile' user_id=user.id %}">{{ user.username }}</a>
+                    <a class="nav-link d-inline active" href="{% url 'profile' user_id=user.id %}">{{ user.username }}</a>
                     <a class="nav-link d-inline" href="/logout">Выйти</a>
                 </li>
             </ul>

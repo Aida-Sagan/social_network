@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -9,7 +10,7 @@ class Post(models.Model):
     caption = models.TextField(blank=True, verbose_name='Подпись')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_date = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    likes = models.IntegerField(blank=True, default=0)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='post_likes')
     comm = models.IntegerField(blank=True, default=0)
 
     class Meta:
