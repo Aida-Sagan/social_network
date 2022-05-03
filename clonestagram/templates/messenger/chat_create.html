@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body id="idbody">
+
+<div class="container" >
+    <div class="border mt-5 p-5 mx-auto formstyle" style="background-image: url({% static 'bg.jpg' %});">
+        
+        <span class="mt-4 d-block mx-auto" id="idspan" style="font-size: 47px;">
+            <p align="center">Create New Chat</p>
+        </span>
+
+        <form method="POST" class="d-flex flex-column" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="name" class="mt-2 labelstyle">Chat Name</label>
+            <input
+                type="text"
+                id="id_name"
+                name="name"
+                class="form-control fieldstyle"
+                placeholder="Chat name"
+                required
+            />
+            
+            <label for="members" class="mt-2 labelstyle">Members</label>
+            <p><select name="members" multiple>
+                {% for usr in users %}
+                    {% if usr.id != user.id %}
+                        <option value={{ usr.id }}>{{ usr.username }}</option>
+                    {% endif %}
+                {% endfor %}
+             </select></p>
+            
+            <button
+                type="submit"
+                id="idbutton"
+                class="btn btn-sm btn-primary btn-block mt-5"
+            >
+                Create Chat
+            </button>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock %}

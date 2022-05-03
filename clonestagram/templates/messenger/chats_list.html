@@ -1,0 +1,25 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+
+    <a href="{% url 'create_chat' %}" class="card-link text-secondary" style="text-decoration: underline;"> 
+        Создать чат
+    </a>
+
+    {% for chat in chats %}
+        <div class="card-body">
+            <a href="{% url 'chat' chat_id=chat.id %}" class="card-link text-secondary" style="text-decoration: underline;">
+                {% if chat.is_private and user.id != chat.user.id %}
+                    {{ chat.user.username }}
+                {% else %}
+                    {{ chat.name }}
+                {% endif %}
+            </a>
+         </div>
+    {% endfor %}
+
+</body>
+
+{% endblock %}

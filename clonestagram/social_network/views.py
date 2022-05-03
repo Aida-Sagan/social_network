@@ -40,9 +40,11 @@ def main(request):
 
 
 @login_required
-def profile(request):
-    profile = Profile.objects.get(user=request.user)
-    posts = Post.objects.filter(user=request.user)
+def profile(request, user_id=None):
+    if user_id is None:
+        user_id = request.user
+    profile = Profile.objects.get(user=user_id)
+    posts = Post.objects.filter(user=user_id)
     return render(request, 'profile/profile.html', {'form': profile, 'posts': posts})
 
 

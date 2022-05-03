@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('register/', RegistrationView.as_view(success_url='/profile/')),
+    path('register/', RegistrationView.as_view(success_url='/main/')),
     path(
         'change-password/',
         views.PasswordChangeView.as_view(
@@ -33,6 +33,7 @@ urlpatterns = [
         ),
         name='change_password'
     ),
-    path('', include('social_django.urls', namespace='social')),
+    path('messenger/', include('messenger.urls')),
     path('', include('social_network.urls')),
+    path('', include('social_django.urls', namespace='social')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

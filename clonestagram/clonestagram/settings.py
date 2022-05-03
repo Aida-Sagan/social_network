@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_network.apps.SocialNetworkConfig',
-    # 'oauth2_provider',
     'social_django',
+    'messenger',
+    'channels',
 ]
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '8130509'
@@ -90,6 +91,16 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'clonestagram.wsgi.application'
+ASGI_APPLICATION = 'clonestagram.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -135,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/main/'
 LOGOUT_URL = '/logout/'
 LOGOUT_REDIRECT_URL = '/login/'
 
