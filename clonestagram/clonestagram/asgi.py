@@ -14,6 +14,10 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 import messenger.routing
 
+
+get_asgi_application()
+
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "clonestagram.settings")
 
 application = ProtocolTypeRouter({

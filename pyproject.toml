@@ -16,6 +16,8 @@ social-auth-app-django = "^5.0.0"
 python-social-auth = "^0.3.6"
 django-allauth = "^0.50.0"
 channels = "^3.0.4"
+channels-redis = "^3.4.0"
+uvicorn = "^0.17.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
