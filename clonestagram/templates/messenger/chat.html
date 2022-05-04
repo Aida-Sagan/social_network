@@ -1,8 +1,10 @@
-{% extends 'header.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <body>
+
+    {% include 'header.html' %}
 
     <textarea id="chat-log" cols="100" rows="20">
         {% for message in messages %} 

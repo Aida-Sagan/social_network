@@ -1,8 +1,10 @@
-{% extends 'header.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
 <body>
+
+    {% include 'header.html' %}
 
     <a href="{% url 'create_chat' %}" class="card-link text-secondary" style="text-decoration: underline;"> 
         Создать чат
