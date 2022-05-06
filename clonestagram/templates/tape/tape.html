@@ -12,7 +12,10 @@
         <div class="col-md-7" style="margin: 20px;">
             <div class="card border border-dark">
                 <div class="card-body">
-                    <a href="{% url 'profile' user_id=post.user.id %}" class="card-link text-secondary"> 
+                    <a class="card-link d-inline-block" href="{% url 'profile' user_id=user.id %}">
+                        <img src= "{{ user.profile.avatar.url }}" class="img-fluid avatarstyle">
+                    </a>
+                    <a href="{% url 'profile' user_id=post.user.id %}" class="card-link text-secondary d-inline-block"> 
                         {{ post.user }}
                     </a>
                     <div class="d-inline-block float-end">{{ post.created_date }}</div>

@@ -106,8 +106,3 @@ def liked_post(requset, pk):
         }
         return JsonResponse(data, safe=False)
     return redirect(reverse('post_detail', args=[str(pk)]))
-
-
-@login_required
-def settings(request):
-    return render(request, 'settings/settings.html')
