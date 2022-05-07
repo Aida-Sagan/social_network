@@ -6,13 +6,14 @@
 
     {% include 'header.html' %}
 
-    <textarea id="chat-log" cols="100" rows="20">
+    <textarea id="chat-log" cols="100" rows="20" disabled style="resize: none;">
         {% for message in messages %} 
             {{ message.user }}: {{ message.text }}
+            {{ message.created_at }}
         {% endfor %}
     </textarea><br>
     
-    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-input" type="text" size="96">
     <input id="chat-message-submit" type="button" value="Send">
     {{ chat_id|json_script:"room-name" }}
     <script>
